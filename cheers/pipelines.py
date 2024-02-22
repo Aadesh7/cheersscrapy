@@ -31,3 +31,4 @@ class CSVPipeline:
                 if row['link'] == item['link']:
                     return True
         return False
+    

@@ -1,0 +1,29 @@
+name: Scrapy Scheduled Job
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+    
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Pull Docker image
+        run: docker pull scrapinghub/splash:latest
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install scrapy
+
+      - name: Run Scrapy spider with Splash
+        run: |
+          docker run -v $(pwd):/app -p 8050:8050 scrapinghub/splash:latest /bin/bash -c "cd /app && scrapy crawl totalspider"
