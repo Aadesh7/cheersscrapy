@@ -25,10 +25,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install scrapy
-
       - name: Run Scrapy spider with Splash
         run: |
-          docker run -v $(pwd):/app -p 8050:8050 scrapinghub/splash:latest /bin/bash -c "cd /app && scrapy crawl totalspider"
+          docker run -v $(pwd):/app -p 8050:8050 scrapinghub/splash:latest /bin/bash -c "cd /app && pip install scrapy && scrapy crawl totalspider"
