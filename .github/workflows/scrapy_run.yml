@@ -27,5 +27,5 @@ jobs:
 
       - name: Run Scrapy spider with Splash
         run: |
-          docker run -d -p 8050:8050 scrapinghub/splash:latest
-          docker run -v $(pwd):/app --link :splash -e SPLASH_URL=http://splash:8050 scrapinghub/splash:latest /bin/bash -c "cd /app && pip install scrapy && scrapy crawl totalspider"
+          docker run -d -p 8050:8050 --name splash_container scrapinghub/splash:latest
+          docker run -v $(pwd):/app --link splash_container:splash -e SPLASH_URL=http://splash:8050 scrapinghub/splash:latest /bin/bash -c "cd /app && pip install scrapy && scrapy crawl totalspider"
