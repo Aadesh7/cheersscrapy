@@ -17,16 +17,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Pull Docker image
-        run: docker pull scrapinghub/splash:latest
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.12.1'
+      
+      - name: Install Scrapy                               
+        run: pip install scrapy  
 
-      - name: Run Scrapy spider with Splash
-        run: |
-          docker run -d -p 8050:8050 --name splash_container scrapinghub/splash:latest
-          docker run -v $(pwd):/app --link splash_container:splash -e SPLASH_URL=http://splash_container:8050 scrapinghub/splash:latest /bin/bash -c "cd /app && pip install scrapy && scrapy crawl totalspider"
+      - name: Run totalspider
+        run: scrapy crawl totalspider
 
