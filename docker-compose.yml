@@ -1,0 +1,16 @@
+version: '3'
+services:
+  scrapy:
+    build: .
+    depends_on:
+      - splash
+    command: scrapy crawl totalspider
+    volumes:
+      - .:/app
+    ports:
+      - "8050:8050"
+
+  splash:
+    image: scrapinghub/splash
+    ports:
+      - "8050:8050"
