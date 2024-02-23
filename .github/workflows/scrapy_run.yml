@@ -32,7 +32,7 @@ jobs:
           pip install scrapy scrapy-splash
 
       - name: Start Splash
-        run: docker run -d -p 8050:8050 scrapinghub/splash
+        run: docker run -d -p 8050:8050 scrapinghub/splash > splash_logs.txt
 
       - name: Run totalspider
         run: scrapy crawl totalspider
