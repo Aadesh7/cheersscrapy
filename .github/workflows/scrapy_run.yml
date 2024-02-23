@@ -30,4 +30,4 @@ jobs:
       run: sleep 5
 
     - name: Run Scrapy spider
-      run: docker exec scrapy-container scrapy crawl totalspider || docker logs scrapy-container
+      run: docker exec scrapy-splash scrapy crawl totalspider || docker logs scrapy-container
