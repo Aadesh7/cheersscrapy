@@ -31,3 +31,7 @@ jobs:
 
     - name: Check container status
       run: docker ps -a
+
+    - name: Execute Scrapy Spider
+      run: |
+        docker-compose exec scrapy scrapy crawl totalspider
