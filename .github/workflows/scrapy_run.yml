@@ -34,3 +34,8 @@ jobs:
       - name: Run totalspider
         run: scrapy crawl totalspider
       
+      - name: Upload CSV artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: allproducts
+          path: allproducts.csv
