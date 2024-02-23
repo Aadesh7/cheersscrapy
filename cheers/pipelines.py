@@ -6,7 +6,7 @@ class CSVPipeline:
     def open_spider(self, spider):
 
         self.csvfile = open('allproducts.csv', 'a+', newline='', encoding='utf-8')
-        self.csvwriter = csv.DictWriter(self.csvfile, fieldnames=['category', 'name', 'link', 'price'])
+        self.csvwriter = csv.DictWriter(self.csvfile, fieldnames=['category', 'name', 'link', 'price', 'updated_date'])
         if os.path.getsize('allproducts.csv') == 0:
             self.csvwriter.writeheader()
 

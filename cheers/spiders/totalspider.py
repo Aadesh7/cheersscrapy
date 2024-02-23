@@ -1,5 +1,6 @@
 import scrapy
 from scrapy_splash import SplashRequest # For JS render for infinite scroll pagination
+from datetime import datetime
 
 class TotalSpider(scrapy.Spider):
 
@@ -90,5 +91,6 @@ class TotalSpider(scrapy.Spider):
                 'category': category_name,
                 'name': name,
                 'link': url,
-                'price': cleaned_price
+                'price': cleaned_price,
+                'updated_date': datetime.now()
             }
