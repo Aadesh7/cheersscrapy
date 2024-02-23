@@ -7,10 +7,6 @@ services:
     command: scrapy crawl totalspider
     volumes:
       - .:/app
-    ports:
-      - "8050:8050"
 
   splash:
     image: scrapinghub/splash
-    ports:
-      - "8050:8050"
