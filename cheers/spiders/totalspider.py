@@ -14,7 +14,7 @@ class TotalSpider(scrapy.Spider):
                 url=url,
                 callback=self.parse,
                 endpoint='render.html',
-                args={'wait': 2, 'timeout': 3600}
+                args={'wait': 2, 'timeout': 90}
             )
 
     def parse(self, response):  # Link of each category is scraped through the category bar and another callback is made
@@ -29,7 +29,7 @@ class TotalSpider(scrapy.Spider):
                 url=category_url,
                 callback=self.parse_category,
                 endpoint='render.html',
-                args={'wait': 2, 'timeout': 3600},  # wait 10 seconds after each request to the category
+                args={'wait': 2, 'timeout': 90},  # wait 10 seconds after each request to the category
                 meta={'category_url': category_url}
             )
     
@@ -71,7 +71,7 @@ class TotalSpider(scrapy.Spider):
             url=response.url,
             callback=self.parse_products,
             endpoint='execute',
-            args={'lua_source': script, 'wait': 2, 'timeout': 3600},
+            args={'lua_source': script, 'wait': 2, 'timeout': 90},
             meta={'category_url': response.meta['category_url']}
         )
 
