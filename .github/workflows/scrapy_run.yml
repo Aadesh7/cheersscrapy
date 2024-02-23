@@ -1,4 +1,4 @@
-name: Scrapy Scheduled Job
+name: Scrapy Run Job
 
 # on:
 #   schedule:
@@ -22,9 +22,14 @@ jobs:
         with:
           python-version: '3.12.1'
       
-      - name: Install Scrapy                               
-        run: pip install scrapy  
+      - name: Install Dependencies                               
+        run: 
+          sudo apt-get update
+          sudo apt-get install -y python3-dev python3-pip libxml2-dev libxslt1-dev zlibig-dev libffi-dev libssl-dev
+          pip install scrapy scrapy-splash
+
+      - name: Start Splash
+        run: docker run -p 8050:8050 scrapinghub/splash
 
       - name: Run totalspider
         run: scrapy crawl totalspider
-
