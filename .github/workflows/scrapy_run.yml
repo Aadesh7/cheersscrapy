@@ -12,7 +12,7 @@ jobs:
     services:
       splash:
         image: scrapinghub/splash
-        ports:
+        ports: 
           - 8050:8050
         options: --name splash-container
 
@@ -23,11 +23,11 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
-    - name: Build and start Scrapy and Splash containers
-      run: docker-compose up -d
+    - name: Build and start Scrapy container
+      run: docker-compose up -d scrapy
+
+    - name: Wait for Splash to start
+      run: sleep 5
 
     - name: Check container status
       run: docker ps -a
-
-    - name: Wait for containers to start
-      run: sleep 10  # Adjust sleep time based on your system's performance and startup times
