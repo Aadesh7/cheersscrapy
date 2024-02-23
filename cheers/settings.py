@@ -5,7 +5,7 @@ NEWSPIDER_MODULE = "cheers.spiders"
 
 # Splash set up
 
-SPLASH_URL = 'http://localhost:8050'
+SPLASH_URL = 'http://0.0.0.0:8050'
 
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
