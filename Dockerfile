@@ -10,8 +10,4 @@ COPY . /app
 
 WORKDIR /app
 
-COPY docker-entrypoint.sh /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 CMD ["bash", "-c", "docker-entrypoint.sh start-splash --disable-browser-sandbox && scrapy crawl totalspider"]
