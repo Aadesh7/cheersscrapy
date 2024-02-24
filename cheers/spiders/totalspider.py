@@ -46,24 +46,18 @@ class TotalSpider(scrapy.Spider):
 
         script = """
             function main(splash)
-                print("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
                 splash:go(splash.args.url)
-                assert(splash:wait(3))
+                assert(splash:wait(2))
                 local last_scroll_position = 0
                 local scroll_delay = 2
-                print("Waited for 3 seconds for the page to load")
                 while true do
                     splash:runjs("window.scrollTo(0, document.body.scrollHeight);")
-                    print("Scrolled to bottom of the page")
                     assert(splash:wait(scroll_delay))
-                    print("Waited 2 seconds")
                     local scroll_position = splash:evaljs("window.scrollY")
                     if scroll_position == last_scroll_position then
-                        print("No change, DONE!!")
                         break
                     else
                         last_scroll_position = scroll_position
-                        print("Changed, waiting!")
                     end
                 end
                 return {
