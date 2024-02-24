@@ -5,7 +5,7 @@ from datetime import datetime
 class TotalSpider(scrapy.Spider):
 
     name = 'totalspider'
-    start_urls = ['https://cheers.com.np/'] # Main page of the website to be scraped
+    start_urls = ['https://www.cheers.com.np/'] # Main page of the website to be scraped
 
     def start_requests(self):   # Start request gets the rendered page of the provided url (extraction process)
 
