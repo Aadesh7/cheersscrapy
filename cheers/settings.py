@@ -9,6 +9,7 @@ SPLASH_URL = 'http://localhost:8050/'
 # SPLASH_URL = 'http://15.206.160.139:8050/'
 SPLASH_LOG_400 = True
 SPLASH_LOG_ENABLED = True
+DOWNLOAD_TIMEOUT = 300
 
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
