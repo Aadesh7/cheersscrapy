@@ -46,23 +46,34 @@ class TotalSpider(scrapy.Spider):
 
         script = """
             function main(splash)
+                -- Load the specified URL
                 splash:go(splash.args.url)
-                assert(splash:wait(2))
+                assert(splash:wait(2))  -- Wait for 2 seconds for the page to load
+
                 local last_scroll_position = 0
-                local scroll_delay = 2
+                local scroll_delay = 2  -- Adjust the scroll delay if needed
+                
+                -- Keep scrolling until reaching the bottom of the page
                 while true do
+                    -- Scroll to the bottom of the page
                     splash:runjs("window.scrollTo(0, document.body.scrollHeight);")
-                    assert(splash:wait(scroll_delay))
+                    assert(splash:wait(scroll_delay))  -- Wait for the page to scroll
+                    
+                    -- Get the current scroll position
                     local scroll_position = splash:evaljs("window.scrollY")
+                    
+                    -- If no further scrolling is possible, exit the loop
                     if scroll_position == last_scroll_position then
                         break
                     else
+                        -- Update the last scroll position
                         last_scroll_position = scroll_position
                     end
                 end
+                
+                -- Return the HTML content and the final scroll position
                 return {
-                    html = splash:html(),
-                    scrollPosition = last_scroll_position
+                    html = splash:html()
                 }
             end
         """  # written in lua syntax, courtesy of chatGPT and some adjustments of scroll_delay time through trial and error
