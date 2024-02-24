@@ -39,7 +39,7 @@ jobs:
 
       - name: Test Splash availability
         run: |
-          curl -sSf http://0.0.0.0:8050/render.html?url=www.google.com > /dev/null
+          curl -sSf http://0.0.0.0:8050/render.html?url=www.cheers.com.np > /dev/null
         continue-on-error: false
 
       - name: Run Scrapy spider
