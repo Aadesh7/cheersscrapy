@@ -156,8 +156,6 @@
     <br>
     Since I had to use Splash to get to multiple pages (pagination was implemented dynamically through infinite pagination), I have also utilized Docker to create a Splash image in the GitHub actions environment to smoothly run the Splash dependency. I tried creating a Lightsail instance to host the Docker image with Splash to utilize it remotely, but due to the networking overhead, some issues were faced, hence I decided to build the Docker environment using GitHub actions.
     <br>
-    While the requirement was to update the same file over and over, since we can download the CSV file created using artifacts download feature from GitHub actions, I have utilized that feature as shown in the image here. However, I have written the update logic in the pipeline class so that while running locally or in a different environment, the same file can be updated successively rather than creating a new file.</p>
-    <h2>Image:</h2><br>
-    (![GitHub Actions Screenshot](artifact.jpg))
+    While the requirement was to update the same file over and over, since we can download the CSV file created using artifacts download feature from GitHub actions, I have utilized that feature. However, I have written the update logic in the pipeline class so that while running locally or in a different environment, the same file can be updated successively rather than creating a new file.</p>
 </body>
 </html>
