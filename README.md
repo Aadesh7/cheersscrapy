@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Scraping Project with Scrapy</title>
 </head>
 <body>
     <h1>Cheers: A Data Scraping Project with Scrapy</h1><br>
