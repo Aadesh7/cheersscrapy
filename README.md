@@ -99,7 +99,7 @@
     <p>This file is used by the GitHub actions to automatically create docker container images for splash and to expose the port (8050) used.</p><br>
     <h3>scrapy_run.yml</h3>
     <p>This is the YAML file used by the GitHub actions. The file describes how to set up the environment, download required dependencies and build docker images if any such that the crawler can be run. It is also here that the schedule is specified. For this project, I have specified the cron syntax as cron: '0 0 * * 6' which means it runs on Saturday at 12 am every week.</p><br>
-    <h2>complete file:</h2>
+    <h2>complete Yaml file:</h2>
     <pre>
         name: Scrapy Run Job
         on:
