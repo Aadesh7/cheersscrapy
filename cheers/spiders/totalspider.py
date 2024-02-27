@@ -97,11 +97,11 @@ class TotalSpider(scrapy.Spider):
             name = products.css('a > h5::text').get()
             url = self.start_urls[0] + products.css('a::attr(href)').get()  # Add head url to product url slug
             price = products.css('h4::text').get()
-            cleaned_price = price[4:]  # removes Rs. and the &nbsp;
+            # cleaned_price = self.extract_numbers(price)  # removes Rs. and the &nbsp dynamically;
             yield {
                 'category': category_name,
                 'name': name,
                 'link': url,
-                'price': cleaned_price,
+                'price': price,
                 'updated_date': datetime.now()
             }
