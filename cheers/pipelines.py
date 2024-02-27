@@ -3,14 +3,14 @@ import os
 
 class CSVPipeline:
 
-    def open_spider(self, spider):
+    def open_spider(self, spider):  # Runs when the spider is opened
 
         self.csvfile = open('allproducts.csv', 'a+', newline='', encoding='utf-8')
         self.csvwriter = csv.DictWriter(self.csvfile, fieldnames=['category', 'name', 'link', 'price', 'updated_date'])
         if os.path.getsize('allproducts.csv') == 0:
             self.csvwriter.writeheader()
 
-    def close_spider(self, spider):
+    def close_spider(self, spider):  # Runs when the spider is closed
 
         self.csvfile.close()
 
