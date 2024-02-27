@@ -158,7 +158,6 @@
     <br>
     While the requirement was to update the same file over and over, since we can download the CSV file created using artifacts download feature from GitHub actions, I have utilized that feature as shown in the image here. However, I have written the update logic in the pipeline class so that while running locally or in a different environment, the same file can be updated successively rather than creating a new file.</p>
     <h2>Image:</h2><br>
-    <img src="artifact" alt="GitHub Actions Screenshot"><br>
-    ![GitHub Actions Screenshot](artifact.jpg)
+    (![GitHub Actions Screenshot](artifact.jpg))
 </body>
 </html>
