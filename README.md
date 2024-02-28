@@ -42,27 +42,27 @@
     <p>The file contains the code for the main scraping operation. It uses the scrapy and scrapy-splash library to:
     <ul>
         <li>Request the provided URL using SplashRequest.</li>
-        <li>Extract each category of the items available (beer, whisky, wine, snacks, mixers, etc.).</li>
-        <li>Go through each category link, scroll to the bottom of each category page (scroll through all pagination to get all products within the category) and get each product.</li>
-        <li>Finally, return the following data for each product (Data Schema for the CSV file is the same):
+        <li><b>Extract each category of the items available</b> (beer, whisky, wine, snacks, mixers, etc.).</li>
+        <li>Go through each category link, scroll to the bottom of each category page (<b>scroll through all pagination to get all products within the category</b>) and get each product.</li>
+        <li>Finally, return the following data for each product (<b>Data Schema</b> for the CSV file is the same):
             <ul>
-                <li>category</li>
-                <li>name</li>
-                <li>link</li>
-                <li>price</li>
-                <li>updated_date</li>
+                <li><b>category</b></li>
+                <li><b>name</b></li>
+                <li><b>link</b></li>
+                <li><b>price</b></li>
+                <li><b>updated_date</b></li>
             </ul>
         </li>
     </ul></p><br>
     <h3>pipelines.py</h3>
-    <p>A class CSVPipeline is defined here which provides following services to the registered spiders:
+    <p><b>A class CSVPipeline is defined</b> here which provides following services to the registered spiders:
     <ul>
         <li>open_spider method which opens (and if not available, creates) a csv file named allproducts.csv with read and write privileges.</li>
         <li>close_spider which then closes the csv file.</li>
         <li>Each item is written with the help of another method and for each item, duplicate entry is also checked with the help of another check method.</li>
     </ul></p><br>
     <h3>settings.py</h3>
-    <p>Contains the configurations used by the project. Some examples include splash URL used (hosted in docker hence a URL with port should be provided), timeout, middlewares. ROBOTSTXT_OBEY = False is used to bypass the robots file. It is also here that your created pipeline is registered.</p>
+    <p>Contains the <b>configurations</b> used by the project. Some examples include splash URL used (hosted in docker hence a URL with port should be provided), timeout, middlewares. ROBOTSTXT_OBEY = False is used to bypass the robots file. It is also here that your created pipeline is registered.</p>
     <h2>Settings:</h2>
     <pre>
         BOT_NAME = "cheers"
