@@ -147,7 +147,7 @@
     <ol>
         <li>In your preferred directory, create a virtual environment for Python.</li>
         <li>Activate it (Commonly done in Windows by running dirname\Scripts\activate.bat).</li>
-        <li>Install Scrapy and Scrapy-Splash <pre>pip install scrapy scrapy-splash</pre></li>
+        <li>Pull the main branch. Make sure Scrapy and Scrapy-Splash are installed.<pre>pip install scrapy scrapy-splash</pre></li>
         <li>Using Docker (Docker Desktop in Windows), create an image for Splash <pre>docker pull scrapinghub/splash</pre> and specify port to 8050. Also, make sure to go to <pre>http://localhost:8050</pre> to check if Splash is running. Also, make sure that is the URL in the SPLASH_URL in settings.py file.</li>
         <li>In the main directory, run <pre>scrapy crawl totalspider</pre>, and the crawler will scrape the website and download all the products and write in allproducts.csv which can be found in the main directory. For successive runs, the script will update the products rather than add duplicate ones.</li>
     </ol><br>
