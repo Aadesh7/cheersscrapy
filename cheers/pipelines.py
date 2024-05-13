@@ -1,5 +1,6 @@
 import csv
 import os
+import mysql.connector
 
 class CSVPipeline:
 
@@ -15,6 +16,19 @@ class CSVPipeline:
         self.csvfile.close()
 
     def process_item(self, item, spider):
+
+        # transforming name
+        removelist = ["beer",  "bottle", "vodka", "whisky", "wine", "blonde"]
+        
+        item['name'] = item['name'].lower()
+        words = item['name'].split()
+        words = [word for word in words if word not in removelist]
+        item['name'] = " ".join(words)
+
+        # transforming price
+        # "Rs.Â 4,240"
+
+        # item['price'] = float(item['price'])
 
         if not self.is_duplicate(item):
             self.csvwriter.writerow(item)
@@ -32,3 +46,68 @@ class CSVPipeline:
                     return True
         return False
     
+class MySQLPipeline:
+
+    def open_spider(self, spider):
+        self.conn = mysql.connector.connect(
+            host='127.0.0.1',
+            user='root',
+            password='',
+            database='liquor'
+        )
+        self.cursor = self.conn.cursor()
+
+    def close_spider(self, spider):
+        self.conn.close()
+
+    def process_item(self, item, spider):
+
+        # transforming name
+        removelist = ["beer",  "bottle", "vodka", "whisky", "wine", "blonde", "strong"]
+        
+        item['name'] = item['name'].lower()
+        words = item['name'].split()
+        words = [word for word in words if word not in removelist]
+        item['name'] = " ".join(words)
+
+        # transforming price
+        # "Rs.Â 4,240"
+        prices = item['price'].split()
+        price = prices[1].replace(',', '')
+        item['price'] = float(price)
+        # item['price'] = item['price'].replace('Rs. ', '')
+
+        if not self.is_duplicate(item):
+            self.insert_item(item)
+            spider.logger.info(f"Item added: {item['name']}")
+        else:
+            self.update_item(item)
+            spider.logger.info(f"Item updated: {item['name']}")
+        return item
+
+    def is_duplicate(self, item):
+        query = "SELECT * FROM prodducts WHERE link = %s"
+        self.cursor.execute(query, (item['link'],))
+        if self.cursor.fetchone():
+            return True
+        else:
+            return False
+
+    def insert_item(self, item):
+        query = """
+            INSERT INTO prodducts (category, name, link, price, updated_date)
+            VALUES (%s, %s, %s, %s, %s)
+        """
+        values = (item['category'], item['name'], item['link'], item['price'], item['updated_date'])
+        self.cursor.execute(query, values)
+        self.conn.commit()
+
+    def update_item(self, item):
+        query = """
+            UPDATE prodducts
+            SET category = %s, name = %s, price = %s, updated_date = %s
+            WHERE link = %s
+        """
+        values = (item['category'], item['name'], item['price'], item['updated_date'], item['link'])
+        self.cursor.execute(query, values)
+        self.conn.commit()

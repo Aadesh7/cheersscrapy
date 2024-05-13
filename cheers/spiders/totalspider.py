@@ -1,6 +1,7 @@
 import scrapy
 from scrapy_splash import SplashRequest # For JS render for infinite scroll pagination
 from datetime import datetime
+import html
 
 class TotalSpider(scrapy.Spider):
 
@@ -97,11 +98,12 @@ class TotalSpider(scrapy.Spider):
             name = products.css('a > h5::text').get()
             url = self.start_urls[0] + products.css('a::attr(href)').get()  # Add head url to product url slug
             price = products.css('h4::text').get()
+            decoded_price = html.unescape(price)
             # cleaned_price = self.extract_numbers(price)  # removes Rs. and the &nbsp dynamically;
             yield {
                 'category': category_name,
                 'name': name,
                 'link': url,
-                'price': price,
+                'price': decoded_price,
                 'updated_date': datetime.now()
             }

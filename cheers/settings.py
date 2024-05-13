@@ -5,7 +5,7 @@ NEWSPIDER_MODULE = "cheers.spiders"
 
 # Splash set up
 
-SPLASH_URL = 'http://0.0.0.0:8050/'
+SPLASH_URL = 'http://localhost:8050/'
 # SPLASH_URL = 'http://15.206.160.139:8050/'
 SPLASH_LOG_400 = True
 SPLASH_LOG_ENABLED = True
@@ -32,7 +32,7 @@ ROBOTSTXT_OBEY = False
 
 # Items pipeline
 ITEM_PIPELINES = {
-    'cheers.pipelines.CSVPipeline': 100,
+    'cheers.pipelines.MySQLPipeline': 100,
 }
 
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
